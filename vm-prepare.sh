@@ -382,6 +382,12 @@ installPetitPotam(){
 installkerbrute(){
 	git clone https://github.com/ropnop/kerbrute.git "$TOOLSFOLDER/$1/kerbrute"
 }
+installDachshundAD(){
+	git clone git@github.com:GoSecure/DachshundAD.git "$TOOLSFOLDER/$1/DachshundAD"
+}
+installPKINITtools(){
+	git clone https://github.com/dirkjanm/PKINITtools.git "$TOOLSFOLDER/$1/PKINITtools"
+}
 installctftool(){
 	git clone https://github.com/taviso/ctftool/ "$TOOLSFOLDER/$1/ctftool"
 }
@@ -1337,7 +1343,7 @@ installkillerbee(){
 #######################
 ## Available in Kali ##
 #######################
-$SUDO apt install afl exploitdb capstone-tool ropper kerberoast mimikatz aircrack-ng jxplorer
+$SUDO apt install afl exploitdb capstone-tool ropper kerberoast mimikatz aircrack-ng jxplorer testssl.sh
 #installtool sslyze ssl
 #installtool dnsenum recon
 #installtool dnsrecon recon
@@ -1471,6 +1477,8 @@ installtool goddi windows
 installtool PetitPotam windows
 installtool ctftool exploit
 installtool kerbrute windows
+installtool DachshundAD windows
+installtool PKINITtools windows
 
 
 #######################

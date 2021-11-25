@@ -1,5 +1,7 @@
 # VM-prepare
 
+## Requirements
+git
 
 ## Usage
 Clone the repository:
@@ -12,6 +14,11 @@ Run the tool as low priv user:
 ```
 cd VM-prepare/
 ./vm-prepare.sh
+```
+
+Run the vm-prepare.sh tool one first time to install the requirements:
+```
+./vm-prepare.sh firsttime
 ```
 
 Install all the tools
