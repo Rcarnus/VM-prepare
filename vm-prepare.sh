@@ -13,6 +13,9 @@ RESET='\e[0m'
 #	exit
 #fi
 
+#Check
+#https://github.com/penetrarnya-tm/WeaponizeKali.sh
+
 identity=$(whoami)
 depedencies=""
 TOOLSFOLDER="/opt/outils"
@@ -218,12 +221,12 @@ cnoreabbrev AG Ack
 installtool(){
     ERROR=0
 	echo -e "$OKBLUE Installing $1 in $2: $RESET"
-	#TODO: check the existance of dir $2
-	#if it does not exist
+	#check the existance of dir $2
+	if [ ! -d "$TOOLSFOLDER/$2" ]; then
+	#TODO: if it does not exist
 	#lets ask the user if we should create it
 	#if yes create it
 	#else exit
-	if [ ! -d "$TOOLSFOLDER/$2" ]; then
 		echo "$TOOLSFOLDER/$2 does not exist. Do you want to create it?"
 		#read RESPONSE
 		mkdir "$TOOLSFOLDER/$2"
@@ -319,6 +322,7 @@ installgitleaks(){
 
 installPCredz(){
 	git clone https://github.com/lgandx/PCredz "$TOOLSFOLDER/$1/PCredz"
+	$SUDO apt install python3-pip libpcap-dev && pip3 install Cython python-libpcap
 }
 installntlmsspparse(){
 	git clone https://github.com/psychomario/ntlmsspparse.git "$TOOLSFOLDER/$1/ntlmsspparse"
@@ -361,7 +365,7 @@ installprivexchange(){
 }
 installbloodhound-python(){
 	git clone https://github.com/fox-it/BloodHound.py.git "$TOOLSFOLDER/$1/bloodhound-python"
-	pip install bloodhound
+	pip3 install bloodhound
 }
 installBloodHound(){
 	git clone https://github.com/BloodHoundAD/BloodHound.git "$TOOLSFOLDER/$1/BloodHound"
@@ -403,7 +407,7 @@ installmitm6(){
 	git clone https://github.com/fox-it/mitm6.git "$TOOLSFOLDER/$1/mitm6"
 	cd "$TOOLSFOLDER/$1/mitm6"
 	pip3 install -r requirements.txt
-	python3 setup.py install
+	$SUDO python3 setup.py install
 }
 installpeas(){
 	git clone https://github.com/mwrlabs/peas.git "$TOOLSFOLDER/$1/peas"
@@ -427,6 +431,8 @@ installkrbrelayx(){
 
 installbettercap(){
 	git clone https://github.com/bettercap/bettercap.git "$TOOLSFOLDER/$1/bettercap"
+	$SUDO apt install golang-go libnetfilter-queue-dev libusb-1.0-0-dev libpcap-dev
+	go build
 }
 
 installmitmf(){
@@ -474,7 +480,7 @@ installdirbuster(){
 
 installnuclei(){
 	mkdir "$TOOLSFOLDER/$1/nuclei"
-	GO111MODULE=on go get -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei
+	go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 	ln -s $HOME/go/bin/nuclei "$TOOLSFOLDER/$1/nuclei/nuclei"
 }
 installhttprobe(){
@@ -589,7 +595,7 @@ installpyrdp(){
 	$SUDO pip3 install -U -e .
 	cd "$TOOLSFOLDER/$1/pyrdp"
 	python3 setup.py build
-	python3 setup.py install
+	$SUDO python setup.py install
 }
 
 installkillerbee(){
@@ -1374,7 +1380,6 @@ installtool cve-2019-1040-scanner exploit
 installtool krbrelayx windows		
 #installtool bettercap reseau		
 installtool mitmf reseau
-#installtool CrackMapExec windows	#suite d'outils linux pour PTH (pass-the-hash)
 #installtool wpscan web/fingerprint     #scanner WordPress CMS
 installtool urlExtractor web		#extraction of url into js
 #installtool volatility forensics       #framework d'inspection de la memoire. Probablement utile dans d'autres cas de figure que le forensics
