@@ -1124,6 +1124,9 @@ installWSuspicious(){
 installWinPwn(){
 	git clone https://github.com/S3cur3Th1sSh1t/WinPwn.git "$TOOLSFOLDER/$1/WinPwn"
 }
+installJAWS(){
+	git clone https://github.com/411Hall/JAWS.git "$TOOLSFOLDER/$1/JAWS"
+}
 
 installpowersploit(){
     git clone https://github.com/pentestmonkey/windows-privesc-check.git "$TOOLSFOLDER/$1/powersploit"
@@ -1577,6 +1580,7 @@ installtool windowsEnum privesc-windows
 installtool windows-privesc-check privesc-windows
 installtool windows-exploit-suggester privesc-windows
 installtool WinPwn privesc-windows
+installtool JAWS privesc-windows
 installtool WSuspicious privesc-windows
 installtool spectremeltdownchecker privesc-linux
 
