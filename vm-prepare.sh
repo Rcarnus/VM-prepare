@@ -136,7 +136,7 @@ firsttime(){
 
 # VIM SETUP
     echo "Tuning the vimrc ..."
-    cp $HOSTDOCUMENTS/sectools/vimrc ~/.vimrc
+    cp $INITPWD/vimrc ~/.vimrc
     echo "Installing vim-plugin manager (vim-plug):"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -322,7 +322,7 @@ installgitleaks(){
 
 installPCredz(){
 	git clone https://github.com/lgandx/PCredz "$TOOLSFOLDER/$1/PCredz"
-	$SUDO apt install python3-pip libpcap-dev && pip3 install Cython python-libpcap
+	$SUDO apt install python3-pip && $SUDO apt-get install libpcap-dev && $SUDO pip3 install Cython && $SUDO pip3 install python-libpcap
 }
 installntlmsspparse(){
 	git clone https://github.com/psychomario/ntlmsspparse.git "$TOOLSFOLDER/$1/ntlmsspparse"
@@ -355,10 +355,15 @@ installwinexe(){
 installcrackmapexec(){
 	$SUDO apt-get install -y libssl-dev libffi-dev python-dev build-essential
 	#git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec "$TOOLSFOLDER/$1/crackmapexec"
-	mkdir "$TOOLSFOLDER/$1/crackmapexec"
-	wget https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.1.7dev/cme-ubuntu-latest.zip -O "$TOOLSFOLDER/$1/crackmapexec/cme-ubuntu-latest.zip"
-	cd "$TOOLSFOLDER/$1/crackmapexec"
-	unzip cme-ubuntu-latest.zip
+
+	#mkdir "$TOOLSFOLDER/$1/crackmapexec"
+	#wget https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.1.7dev/cme-ubuntu-latest.zip -O "$TOOLSFOLDER/$1/crackmapexec/cme-ubuntu-latest.zip"
+	#cd "$TOOLSFOLDER/$1/crackmapexec"
+	#unzip cme-ubuntu-latest.zip
+
+	python3 -m pip install pipx
+	pipx ensurepath
+	pipx install crackmapexec
 }
 installprivexchange(){
 	git clone https://github.com/dirkjanm/PrivExchange.git "$TOOLSFOLDER/$1/privexchange"
@@ -419,6 +424,9 @@ installimpacket(){
 installcve-2019-1040-scanner(){
 	git clone https://github.com/fox-it/cve-2019-1040-scanner.git "$TOOLSFOLDER/$1/cve-2019-1040-scanner"
 }
+installntlm-scanner(){
+	git clone https://github.com/preempt/ntlm-scanner.git "$TOOLSFOLDER/$1/ntlm-scanner"
+}
 installaclpwn(){
 	git clone https://github.com/fox-it/aclpwn.py.git "$TOOLSFOLDER/$1/aclpwn"
 }
@@ -432,7 +440,8 @@ installkrbrelayx(){
 installbettercap(){
 	git clone https://github.com/bettercap/bettercap.git "$TOOLSFOLDER/$1/bettercap"
 	$SUDO apt install golang-go libnetfilter-queue-dev libusb-1.0-0-dev libpcap-dev
-	go build
+	cd "$TOOLSFOLDER/$1/bettercap"
+	$SUDO go build
 }
 
 installmitmf(){
@@ -813,7 +822,7 @@ installwfuzz(){
 
 installaquatone(){
 	$SUDO apt install chromium-bsu
-	mkdir "$TOOLSFOLDER/$1/aquatone"
+	mkdir -p "$TOOLSFOLDER/$1/aquatone"
 	wget https://github.com/michenriksen/aquatone/releases/download/v1.4.3/aquatone_linux_amd64_1.4.3.zip -O "$TOOLSFOLDER/$1/aquatone/aquatone_linux_amd64_1.4.3.zip"
 	cd "$TOOLSFOLDER/$1/aquatone/"
 	unzip aquatone_linux_amd64_1.4.3.zip
@@ -1380,6 +1389,7 @@ installtool impacket windows
 installtool aclpwn windows
 installtool ldap-scanner windows
 installtool cve-2019-1040-scanner exploit
+installtool ntlm-scanner exploit
 installtool krbrelayx windows		
 #installtool bettercap reseau		
 installtool mitmf reseau
