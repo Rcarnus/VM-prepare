@@ -397,6 +397,9 @@ installDachshundAD(){
 installPKINITtools(){
 	git clone https://github.com/dirkjanm/PKINITtools.git "$TOOLSFOLDER/$1/PKINITtools"
 }
+installKrbRelayUp(){
+	git clone https://github.com/Dec0ne/KrbRelayUp.git "$TOOLSFOLDER/$1/KrbRelayUp"
+}
 installctftool(){
 	git clone https://github.com/taviso/ctftool/ "$TOOLSFOLDER/$1/ctftool"
 }
@@ -432,6 +435,9 @@ installaclpwn(){
 }
 installldap-scanner(){
 	git clone https://github.com/Romounet/ldap-scanner.git "$TOOLSFOLDER/$1/ldap-scanner"
+}
+installLdapRelayScan(){
+	git clone https://github.com/zyn3rgy/LdapRelayScan "$TOOLSFOLDER/$1/LdapRelayScan"
 }
 installkrbrelayx(){
 	git clone https://github.com/dirkjanm/krbrelayx.git "$TOOLSFOLDER/$1/krbrelayx"
@@ -633,6 +639,10 @@ installgdbpeda(){
 	git clone https://github.com/longld/peda.git "$TOOLSFOLDER/$1/gdbpeda"
 	echo "source $TOOLSFOLDER/$1/gdbpeda/peda.py" >> ~/.gdbinit
 }
+installcwe_checker(){
+	git clone https://github.com/fkie-cad/cwe_checker.git "$TOOLSFOLDER/$1/cwe_checker"
+}
+
 installpwndbg(){
 	git clone https://github.com/pwndbg/pwndbg "$TOOLSFOLDER/$1/pwndbg"
 	cd "$TOOLSFOLDER/$1/pwndbg"
@@ -730,6 +740,9 @@ installimmdbgtools(){
 	mkdir "$TOOLSFOLDER/$1/immdbgtools"
 	git clone https://github.com/corelan/mona "$TOOLSFOLDER/$1/immdbgtools/mona"
 }
+installImHex(){
+	git clone https://github.com/WerWolv/ImHex.git "$TOOLSFOLDER/$1/ImHex"
+}
 
 installsjet(){
 	git clone https://github.com/siberas/sjet.git "$TOOLSFOLDER/$1/sjet"
@@ -781,6 +794,9 @@ installradamsa(){
     git clone https://gitlab.com/akihe/radamsa "$TOOLSFOLDER/$1/radamsa"
     cd "$TOOLSFOLDER/$1/radamsa"
     #make
+}
+installe9afl(){
+	git clone https://github.com/GJDuck/e9afl.git "$TOOLSFOLDER/$1/e9afl"
 }
 
 installwpscan(){
@@ -1388,6 +1404,7 @@ installtool peas windows		#Active sync cmd line tool
 installtool impacket windows		
 installtool aclpwn windows
 installtool ldap-scanner windows
+installtool LdapRelayScan windows
 installtool cve-2019-1040-scanner exploit
 installtool ntlm-scanner exploit
 installtool krbrelayx windows		
@@ -1497,7 +1514,7 @@ installtool ctftool exploit
 installtool kerbrute windows
 installtool DachshundAD windows
 installtool PKINITtools windows
-
+installtool KrbRelayUp windows
 
 #######################
 ######  Mobile  #######
@@ -1531,16 +1548,19 @@ installtool gitrob web
 ######  Exploit #######
 #######################
 
-#installtool gdbpeda reverse
+installtool gdbpeda reverse
+installtool cwe_checker reverse
 installtool pwndbg reverse
 installtool paimei reverse
 installtool bdfactory exploit  #patch exe avec shellcode arbitraire
 installtool Bashark exploit	#post-exploit un pure bash
 #install veilFramework exploit #Trop lourd et necessite deja MetasploiT
 installtool immdbgtools exploit
+installtool ImHex exploit
 installtool ms017 exploit
 installtool boofuzz fuzzer
 installtool radamsa fuzzer
+installtool e9afl fuzzer
 installtool sjet exploit
 
 #FIXME: issue with mkvirtualenv (from virtualenvwrapper package)
