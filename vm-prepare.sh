@@ -365,6 +365,14 @@ installcrackmapexec(){
 	pipx ensurepath
 	pipx install crackmapexec
 }
+installnetexec(){
+	$SUDO apt-get install -y libssl-dev libffi-dev python-dev build-essential
+	mkdir "$TOOLSFOLDER/$1/netexec"
+	cd "$TOOLSFOLDER/$1/netexec"
+	$SUDO apt install pipx git
+	pipx ensurepath
+	pipx install git+https://github.com/Pennyw0rth/NetExec
+}
 installprivexchange(){
 	git clone https://github.com/dirkjanm/PrivExchange.git "$TOOLSFOLDER/$1/privexchange"
 }
@@ -452,6 +460,15 @@ installbettercap(){
 
 installmitmf(){
 	git clone https://github.com/byt3bl33d3r/MITMf.git "$TOOLSFOLDER/$1/mitmf"
+}
+installcertmitm(){
+	git clone https://github.com/aapooksman/certmitm.git "$TOOLSFOLDER/$1/certmitm"
+}
+installssh-mitm(){
+	mkdir "$TOOLSFOLDER/$1/ssh-mitm"
+	cd "$TOOLSFOLDER/$1/ssh-mitm"
+	wget https://github.com/ssh-mitm/ssh-mitm/releases/latest/download/ssh-mitm-x86_64.AppImage
+	chmod +x ssh-mitm*.AppImage
 }
 
 #Bug d'install -> version release
@@ -1091,7 +1108,9 @@ installbinwalk(){
     $SUDO ./deps.sh
     $SUDO python setup.py install
 }
-
+installbinskim(){
+    git clone 
+}
 
 installrekall(){
     virtualenv /tmp/Test
@@ -1161,6 +1180,18 @@ installpowersploit(){
 installobjection(){
     git clone https://github.com/sensepost/objection.git "$TOOLSFOLDER/$1/objection"
     pip3 install objection
+}
+installshellcheck(){
+    git clone https://github.com/koalaman/shellcheck.git "$TOOLSFOLDER/$1/shellcheck"
+}
+installbearer(){
+    mkdir "$TOOLSFOLDER/$1/bearer"
+    cd "$TOOLSFOLDER/$1/bearer"
+    curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh
+    #sudo apt-get install apt-transport-https
+    #echo "deb [trusted=yes] https://apt.fury.io/bearer/ /" | sudo tee -a /etc/apt/sources.list.d/fury.list
+    #sudo apt-get update
+    #sudo apt-get install bearer
 }
 
 
@@ -1377,7 +1408,7 @@ installkillerbee(){
 #######################
 ## Available in Kali ##
 #######################
-$SUDO apt install afl exploitdb capstone-tool ropper kerberoast mimikatz aircrack-ng jxplorer testssl.sh
+$SUDO apt install afl exploitdb capstone-tool ropper kerberoast mimikatz aircrack-ng jxplorer testssl.sh shellcheck
 #installtool sslyze ssl
 #installtool dnsenum recon
 #installtool dnsrecon recon
@@ -1409,7 +1440,6 @@ installtool cve-2019-1040-scanner exploit
 installtool ntlm-scanner exploit
 installtool krbrelayx windows		
 #installtool bettercap reseau		
-installtool mitmf reseau
 #installtool wpscan web/fingerprint     #scanner WordPress CMS
 installtool urlExtractor web		#extraction of url into js
 #installtool volatility forensics       #framework d'inspection de la memoire. Probablement utile dans d'autres cas de figure que le forensics
@@ -1439,6 +1469,9 @@ installsublime
 #######################
 ######  Reseau  #######
 #######################
+installtool mitmf reseau
+installtool ssh-mitm reseau
+installtool certmitm reseau
 installtool pytbull reseau   		#bypass IDS
 installtool frogger reseau		#VLAN hopping facility tool
 #installtool sniffjoke reseau
@@ -1505,6 +1538,7 @@ installtool office365userenum exploit
 installtool UhOh365 exploit
 installtool patator exploit
 #installtool crackmapexec windows
+installtool netexec windows
 installtool privexchange windows
 installtool bloodhound-python windows
 installtool BloodHound windows
@@ -1521,6 +1555,15 @@ installtool KrbRelayUp windows
 #######################
 
 installtool objection mobile
+
+#######################
+####  Code Audit  #####
+#######################
+
+
+#installtool shellcheck sourceauditing
+installtool bearer sourceauditing
+
 
 #######################
 #######  Web  #########
