@@ -311,6 +311,9 @@ installdnsrecon(){
 installcloud_enum(){
 	git clone https://github.com/initstring/cloud_enum.git "$TOOLSFOLDER/$1/cloud_enum"
 }
+installROADtools(){
+	git clone https://github.com/dirkjanm/ROADtools "$TOOLSFOLDER/$1/ROADtools"
+}
 installgitleaks(){
 	git clone https://github.com/zricethezav/gitleaks.git "$TOOLSFOLDER/$1/gitleaks"
 	GO111MODULE=on go get github.com/zricethezav/gitleaks/v7
@@ -1486,6 +1489,7 @@ $SUDO apt install exploitdb jxplorer netexec responder mitm6 bloodhound bloodhou
 #installtool httprobe recon
 #installtool cloud_enum recon
 #installtool gitleaks recon
+installtool ROADtools recon
 
 #######################
 ####  Windows/AD  #####
