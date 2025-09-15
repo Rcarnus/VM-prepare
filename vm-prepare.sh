@@ -60,53 +60,50 @@ firsttime(){
 
 # FOR ME:
     depedencies="$depedencies make ruby vim git gitk"
-    depedencies="$depedencies gparted libemu2 meld dia"
-    depedencies="$depedencies hping3 tcpreplay apache2-utils"
-    depedencies="$depedencies opensc"
-    depedencies="$depedencies linux-source"
+    #depedencies="$depedencies gparted libemu2 meld dia"
+    #depedencies="$depedencies hping3 tcpreplay apache2-utils"
+    #depedencies="$depedencies opensc"
+    #depedencies="$depedencies linux-source"
     depedencies="$depedencies exuberant-ctags cscope"
-    depedencies="$depedencies wireshark"
+    depedencies="$depedencies flameshot"
+    depedencies="$depedencies docker.io"
     depedencies="$depedencies silversearcher-ag"
-# FOR Bureautique
-    depedencies="$depedencies filezilla"
+    #depedencies="$depedencies rar kwrite unzip"
+    #depedencies="$depedencies filezilla"
 # X86 COMPAT
     #depedencies="$depedencies libc6:i386 libstdc++6:i386 libc6-dev"
 # WINDOWS PENTEST USEFUL STUFF
-    depedencies="$depedencies rar kwrite unzip"
-    depedencies="$depedencies xfce4 xubuntu-desktop"
-    depedencies="$depedencies apt-file curl terminator kate tmux"
-    depedencies="$depedencies python-libpcap"
-    depedencies="$depedencies tshark"
-    depedencies="$depedencies rdate krb5-user"
-    depedencies="$depedencies mercurial"
-    depedencies="$depedencies nagios-nrpe-plugin"
+    #depedencies="$depedencies xfce4 xubuntu-desktop"
+    #depedencies="$depedencies apt-file curl terminator kate tmux"
+    #depedencies="$depedencies python-libpcap"
+    #depedencies="$depedencies tshark"
+    #depedencies="$depedencies rdate krb5-user"
+    #depedencies="$depedencies mercurial"
+    #depedencies="$depedencies nagios-nrpe-plugin"
     depedencies="$depedencies traceroute tcptraceroute whois"
-    depedencies="$depedencies krb5-user"
+    #depedencies="$depedencies krb5-user"
 # FOR DNSENUM
     depedencies="$depedencies cpanminus libnet-netmask-perl libxml-writer-perl libstring-random-perl"
 # FOR HYDRA
-    depedencies="$depedencies libssl-dev libssh-dev libidn11-dev libpcre3-dev libgtk2.0-dev libmysqlclient-dev libpq-dev libsvn-dev firebird-dev"
+    #depedencies="$depedencies libssl-dev libssh-dev libidn11-dev libpcre3-dev libgtk2.0-dev libmysqlclient-dev libpq-dev libsvn-dev firebird-dev"
 # FOR ARACHNI
     depedencies="$depedencies build-essential curl libcurl4 libcurl4-openssl-dev ruby ruby-dev"
 # FOR fragrouter
-    depedencies="$depedencies flex bison"
+    #depedencies="$depedencies flex bison"
 # FOR PYTBULL
     depedencies="$depedencies python-cherrypy3 python-feedparser"
 # FOR MALLORY
-    depedencies="$depedencies python-m2crypto python-qt4 pyro-gui python-netfilter python-pyasn1 python-paramiko python-twisted-web python-qt4-sql sqlite3 build-essential libnetfilter-conntrack-dev libnetfilter-conntrack3"
+    #depedencies="$depedencies python-m2crypto python-qt4 pyro-gui python-netfilter python-pyasn1 python-paramiko python-twisted-web python-qt4-sql sqlite3 build-essential libnetfilter-conntrack-dev libnetfilter-conntrack3"
 #FOR ISIC
-    depedencies="$depedencies libnet1-dev make"
+    #depedencies="$depedencies libnet1-dev make"
 # Windows CRACKING
     depedencies="$depedencies samdump2"
 # FOR BINWALK
-    depedencies="$depedencies python-lzma"
-# FOR ENUM4LINUX
-    depedencies="$depedencies smbclient" #rpcclient,net,nmblookup,smbclient
-    depedencies="$depedencies ldap-utils" #ldapclient
-    depedencies="$depedencies nbtscan"
+    #depedencies="$depedencies python-lzma"
 # PYTHON USEFUL STUFF
-    depedencies="$depedencies python-pip python-dev build-essential"
-    depedencies="$depedencies ant"
+    depedencies="$depedencies pipx"
+    #depedencies="$depedencies python-pip python-dev build-essential"
+    #depedencies="$depedencies ant"
     $SUDO apt-get -y install "$depedencies"
     echo ""
 
@@ -371,7 +368,7 @@ installnetexec(){
 	cd "$TOOLSFOLDER/$1/netexec"
 	$SUDO apt install pipx git
 	pipx ensurepath
-	pipx install git+https://github.com/Pennyw0rth/NetExec
+	pipx install git+https://github.com/Pennyw0rth/NetExec --force
 }
 installprivexchange(){
 	git clone https://github.com/dirkjanm/PrivExchange.git "$TOOLSFOLDER/$1/privexchange"
@@ -462,7 +459,7 @@ installmitmf(){
 	git clone https://github.com/byt3bl33d3r/MITMf.git "$TOOLSFOLDER/$1/mitmf"
 }
 installcertmitm(){
-	git clone https://github.com/aapooksman/certmitm.git "$TOOLSFOLDER/$1/certmitm"
+	git clone git@github.com:aapooksman/certmitm.git "$TOOLSFOLDER/$1/certmitm"
 }
 installssh-mitm(){
 	mkdir "$TOOLSFOLDER/$1/ssh-mitm"
@@ -763,6 +760,11 @@ installImHex(){
 
 installsjet(){
 	git clone https://github.com/siberas/sjet.git "$TOOLSFOLDER/$1/sjet"
+}
+installremote-method-guesser(){
+	git clone https://github.com/qtc-de/remote-method-guesser "$TOOLSFOLDER/$1/remote-method-guesser"
+	cd "$TOOLSFOLDER/$1/remote-method-guesser"
+	mvn package
 }
 
 installsulley(){
@@ -1399,137 +1401,105 @@ installkillerbee(){
 #######################
 #installtool sslyzeRGS ssl
 
-
-#######################
-###### GoSecure #######
-#######################
-
-
 #######################
 ## Available in Kali ##
 #######################
-$SUDO apt install afl exploitdb capstone-tool ropper kerberoast mimikatz aircrack-ng jxplorer testssl.sh shellcheck
+$SUDO apt install exploitdb jxplorer netexec responder mitm6 bloodhound bloodhound.py nuclei smbmap enum4linux-ng bettercap nmap dirb wireshark freerdp3-x11 ldapdomaindump coercer hydra dirsearch
+#$SUDO apt install ropper capstone-tool kerberoast aircrack-ng
+
 #installtool sslyze ssl
-#installtool dnsenum recon
-#installtool dnsrecon recon
-#installtool nmap reseau
-#installtool aircrack reseau 		#cracker wifi
-#installtool wireshark reseau
-#installtool wpasycophant reseau/wifi
-#installtool hostapd-mana reseau/wifi
-#installtool eaphammer reseau/wifi
-installtool cap2hccapx reseau/wifi
-#installtool hcxdumptool reseau/wifi
-#installtool hcxtools reseau/wifi
-#installtool nikto web/fingerprint
-#installtool arachni web/scanner 	#probleme de dependances avec le git
-#installtool sqlmap web/sql
-#installtool dirb222 web		#BF path web
-#installtool theHarvester web/fingerprint	#Open web ressources harvester
-#installtool wfuzz web/fingerprint	#Enumeration de dirs web
-installtool aquatone web/fingerprint	#Fingerprint web interfaces
-#installtool smbmap windows
-#installtool enum4linux windows  	#enumeration domain, user, null session RID cycling, OS info
-installtool responder windows		#WPAD spoof exploit
-installtool peas windows		#Active sync cmd line tool
-installtool impacket windows		
-installtool aclpwn windows
-installtool ldap-scanner windows
-installtool LdapRelayScan windows
-installtool cve-2019-1040-scanner exploit
-installtool ntlm-scanner exploit
-installtool krbrelayx windows		
-#installtool bettercap reseau		
-#installtool wpscan web/fingerprint     #scanner WordPress CMS
-installtool urlExtractor web		#extraction of url into js
+#installtool cve-2019-1040-scanner exploit
+#installtool ntlm-scanner exploit
 #installtool volatility forensics       #framework d'inspection de la memoire. Probablement utile dans d'autres cas de figure que le forensics
 #installtool rekall forensics		#framework d'inspection de la memoire. Probablement utile dans d'autres cas de figure que le forensics
-#installtool afl fuzzer			#American fuzzy loop: fuzzing genetique par instrumentation de code (une reference)
-#installtool binwalk reverse
-installtool nishang windows		#post exploit du style powersploit
+#installtool afl fuzzer			#Kali package
 #installtool exploit-database exploit
-installtool carnalMSFexploits exploit
-installtool PowerSploit windows	#set de tools PowerShell d'exploitation windows
-#installtool fragrouter reseau		#fragmentation IP
-#installtool trinity kernel		#syscall fuzzer
+#installtool carnalMSFexploits exploit
 #installtool pompem exploit
-#installtool capstone reverse
 #installtool ncrack cracker		#fast cracker reseau
 #installtool SET social-engineering      #toolkit de SE qui semble assez riche
-installtool PCredz reseau/analyse    	#Analyse CB/NTML etc. dans PCAP
-#installtool mimikatz windows
-installtool rdp-check-sec windows
-installtool wabt reverse
-#installtool apktool mobile
-installtool crowbar exploit
-#installtool golismero recon
-installsublime
+#installtool crowbar exploit
 
 
 #######################
 ######  Reseau  #######
 #######################
-installtool mitmf reseau
-installtool ssh-mitm reseau
-installtool certmitm reseau
-installtool pytbull reseau   		#bypass IDS
-installtool frogger reseau		#VLAN hopping facility tool
+
+#installtool nmap reseau		#Kali package
+#installtool wireshark reseau		#Kali package
+#installtool bettercap reseau		#Kali package
+#installtool fragrouter reseau		#fragmentation IP
+#installtool PCredz reseau/analyse    	#Analyse CB/NTML etc. dans PCAP
+#installtool mitmf reseau
+#installtool ssh-mitm reseau
+#installtool certmitm reseau
+#installtool pytbull reseau   		#bypass IDS
+#installtool frogger reseau		#VLAN hopping facility tool
 #installtool sniffjoke reseau
-installtool DET reseau  		#Tool anti DLP (data leak protection)
-installtool scapy reseau
-installtool scapy-ssl_tls reseau
-installtool striptls reseau
-installtool dsniff reseau 		#set de tools pour attaques reseau notamment overflow de mac : switch -> hub
-installtool mitmproxy reseau 		#outil de manipulation de paquets (http) en mode proxy mitm (en command line)
-installtool pyrdp reseau
+#installtool DET reseau  		#Tool anti DLP (data leak protection)
+#installtool scapy reseau
+#installtool scapy-ssl_tls reseau
+#installtool striptls reseau
+#installtool dsniff reseau 		#set de tools pour attaques reseau notamment overflow de mac : switch -> hub
+#installtool mitmproxy reseau 		#outil de manipulation de paquets (http) en mode proxy mitm (en command line)
+#installtool pyrdp reseau
 
 
 #######################
 ######  Wireless ######
 #######################
-installtool killerbee wireless
+
+#installtool killerbee wireless
+#installtool wpasycophant reseau/wifi
+#installtool hostapd-mana reseau/wifi
+#installtool eaphammer reseau/wifi
+#installtool cap2hccapx reseau/wifi
+#installtool hcxdumptool reseau/wifi
+#installtool hcxtools reseau/wifi
 
 
 #######################
 ###  Kernel Linux  ####
 #######################
 
-installtool ltp kernel  		#testing generaliste de Linux
-installtool kernelfuzzing kernel 	#portage kernel de afl
-installtool syzkaller kernel 		#Multi-os unsuppervised syscall fuzzing
+#installtool ltp kernel  		#testing generaliste de Linux
+#installtool kernelfuzzing kernel 	#portage kernel de afl
+#installtool syzkaller kernel 		#Multi-os unsuppervised syscall fuzzing
 #installtool crashme kernel  		#Lien non automatisable
-installtool iofuzz kernel		#Fuzzing d'IO
-installtool kfetch-toolkit kernel  	#debug kernel
+#installtool iofuzz kernel		#Fuzzing d'IO
+#installtool kfetch-toolkit kernel  	#debug kernel
 #installtool ktsan kernel  		#KernelThreadSanitizer (warning before cloning: linux with patches)
 #installtool kmsan kernel  		#KernelMemorySanitizer (warning before cloning: linux with patches)
+#installtool trinity kernel		#syscall fuzzer
 
 #######################
 #######  Recon  #######
 #######################
 
-installtool amass recon
-installtool subfinder recon
-installtool ikeprobe recon
-installtool nuclei web
-installtool gau web
-installtool subjack recon
-installtool httprobe recon
-installtool cloud_enum recon
-installtool gitleaks recon
+#installtool dnsenum recon
+#installtool dnsrecon recon
+#installtool golismero recon
+#installtool amass recon
+#installtool subfinder recon
+#installtool ikeprobe recon
+#installtool subjack recon
+#installtool httprobe recon
+#installtool cloud_enum recon
+#installtool gitleaks recon
 
 #######################
 ####  Windows/AD  #####
 #######################
 
-installtool ntlmsspparse windows	#Analyse NTLMSSP dans PCAP. pcredz does that already ?
-installtool ntlmdecoder windows
+#installtool ntlmsspparse windows	#Analyse NTLMSSP dans PCAP. pcredz does that already ?
+#installtool ntlmdecoder windows
 #installtool CredCrack windows  	#PSploit better...
-installtool mitm6 windows		#spoof dhcp6 requests on the network
+#installtool mitm6 windows		#spoof dhcp6 requests on the network
 #installtool pykek windows		#Original github repo removed, see the following one:
 #install RIDENUM windows		#enum4linux semble faire pareil ou mieux
 #install winexe windows			#execution de commande au travers de SAMBA (remplacé par crackmapexec)
 installtool koadic windows		#pivoting tool for windows
-installtool SMBCrunch windows
+installtool SMBCrunch windows		#Scrap SMB shares with automation tools (deprecated but still nice)
 installtool MakeMeEnterpriseAdmin windows #Escalate from domain admin to enterprise admin
 installtool powershellempire windows
 installtool ruler windows		#WPAD spoof exploit
@@ -1537,24 +1507,38 @@ installtool sprayingtoolkit exploit
 installtool office365userenum exploit
 installtool UhOh365 exploit
 installtool patator exploit
-#installtool crackmapexec windows
-installtool netexec windows
+#installtool crackmapexec windows	#Deprecated
+#installtool netexec windows		#Kali package
 installtool privexchange windows
-installtool bloodhound-python windows
-installtool BloodHound windows
-installtool goddi windows
+#installtool bloodhound-python windows
+#installtool BloodHound windows
+#installtool goddi windows 		#Deprecated
 installtool PetitPotam windows
-installtool ctftool exploit
+#installtool ctftool exploit
 installtool kerbrute windows
 installtool DachshundAD windows
 installtool PKINITtools windows
 installtool KrbRelayUp windows
+#installtool smbmap windows		#Kali package
+#installtool enum4linux windows  	#Kali package
+#installtool responder windows		#Kali package
+#installtool peas windows		#Active sync cmd line tool
+#installtool impacket windows		
+#installtool aclpwn windows
+#installtool ldap-scanner windows
+#installtool LdapRelayScan windows
+#installtool krbrelayx windows
+installtool nishang windows		#post exploit du style powersploit
+installtool PowerSploit windows		#set de tools PowerShell d'exploitation windows
+#installtool mimikatz windows
+installtool rdp-check-sec windows
 
 #######################
 ######  Mobile  #######
 #######################
 
-installtool objection mobile
+#installtool apktool mobile
+#installtool objection mobile
 
 #######################
 ####  Code Audit  #####
@@ -1562,26 +1546,37 @@ installtool objection mobile
 
 
 #installtool shellcheck sourceauditing
-installtool bearer sourceauditing
+#installtool bearer sourceauditing
 
 
 #######################
 #######  Web  #########
 #######################
 
-installtool vbscan web/fingerprint        #scanner vBulletin CMS
-installtool sparty web/fingerprint        #scanner SharePoint CMS
+#installtool nuclei web			#Kali package
+#installtool gau web
+#installtool vbscan web/fingerprint        #scanner vBulletin CMS
+#installtool sparty web/fingerprint        #scanner SharePoint CMS
 #install droopescan web/fingerprint    #scanner Drupal/WP/SilverStripe _ Probleme de droit d'accès au repo git
-installtool svnExtractor web/fingerprint  #extracteur de fichier a partir du .svn
+#installtool svnExtractor web/fingerprint  #extracteur de fichier a partir du .svn
 #install JavaSerialKillerPlugin web/scanner/burp  #exploit Java serialization, plugin burp _ Probleme de droit d'accès au repo git
-installtool blindelephant web/fingerprint	
+#installtool blindelephant web/fingerprint	
 #install dirbuster web
-installtool tachyon web
+#installtool tachyon web
 #install GWTtoolset web
 #install xsser web
 #install Sn1per web/fingerprint
-installtool ysoserial exploit
-installtool gitrob web
+#installtool ysoserial exploit
+#installtool gitrob web
+#installtool nikto web/fingerprint
+#installtool arachni web/scanner 	#probleme de dependances avec le git
+#installtool sqlmap web/sql		#Kali package
+#installtool dirb222 web		#BF path web
+#installtool theHarvester web/fingerprint	#Open web ressources harvester
+#installtool wfuzz web/fingerprint	#Enumeration de dirs web
+#installtool aquatone web/fingerprint	#Deprecated
+#installtool wpscan web/fingerprint     #scanner WordPress CMS
+#installtool urlExtractor web		#extraction of url into js
 
 #######################
 ###### Forensics ######
@@ -1591,26 +1586,30 @@ installtool gitrob web
 ######  Exploit #######
 #######################
 
-installtool gdbpeda reverse
-installtool cwe_checker reverse
-installtool pwndbg reverse
-installtool paimei reverse
-installtool bdfactory exploit  #patch exe avec shellcode arbitraire
-installtool Bashark exploit	#post-exploit un pure bash
+#installtool gdbpeda reverse
+#installtool cwe_checker reverse
+#installtool pwndbg reverse
+#installtool paimei reverse
+#installtool binwalk reverse		#Kali package
+#installtool capstone reverse
+#installtool wabt reverse
+#installtool bdfactory exploit  #patch exe avec shellcode arbitraire
+#installtool Bashark exploit	#post-exploit un pure bash
 #install veilFramework exploit #Trop lourd et necessite deja MetasploiT
-installtool immdbgtools exploit
-installtool ImHex exploit
+#installtool immdbgtools exploit
+#installtool ImHex exploit
 installtool ms017 exploit
-installtool boofuzz fuzzer
-installtool radamsa fuzzer
-installtool e9afl fuzzer
-installtool sjet exploit
+#installtool boofuzz fuzzer
+#installtool radamsa fuzzer
+#installtool e9afl fuzzer
+#installtool sjet exploit
+installtool remote-method-guesser exploit	#Exploitation of java-rmi services
 
 #FIXME: issue with mkvirtualenv (from virtualenvwrapper package)
 #installtool angr exploit		#Framework d'analyse binaire concolique
 #installtool manticore fuzzer
 
-installtool isic fuzzer
+#installtool isic fuzzer
 #install FuzzLabs fuzzer
 #install defaceJSF web/scanner
 installtool dpe dico
@@ -1662,15 +1661,15 @@ installtool spectremeltdownchecker privesc-linux
 ###### Hardware #######
 #######################
 
-installtool ols hardware
-installtool flashrom hardware
-installtool firmware-mod-kit hardware
+#installtool ols hardware
+#installtool flashrom hardware
+#installtool firmware-mod-kit hardware
 #installtool grub-unlzma hardware
-installtool uboot-mdb-dump hardware
+#installtool uboot-mdb-dump hardware
 #installtool arm_now hardware
-installtool pcileech hardware
-installtool buspirate hardware
-installtool lpc_sniffer_tpm hardware
+#installtool pcileech hardware
+#installtool buspirate hardware
+#installtool lpc_sniffer_tpm hardware
 
 #######################
 ######## Cheat ########
@@ -1680,6 +1679,7 @@ installtool chsh cheatsheets
 installtool myCheatSheets cheatsheets
 
 
+installsublime
 installnetworkminer
 #installpycharm
 #installEtherpad
